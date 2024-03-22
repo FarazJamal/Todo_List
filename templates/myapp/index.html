@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-6">
+        <br><br>
+        <h2> Add Items </h2>
+        <form action="add_todo/" method="POST" class="d-flex">
+            {% csrf_token %}
+            <input type="text" class="form-control me-2" placeholder="type here...." name="content" required>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <br><br><br>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col-sm-6">
+        <ul class="list-group">
+            {% for todo in todo_items %}
+
+            <li class="list-group-item"> {{ todo.text }} 
+                <div class="float-end">
+                    <form action="delete_todo/{{todo.id}}/">
+                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            </li>
+
+            {% endfor %}
+        </ul>
+
+    </div>
+</div>
+
+
+
+
+{% endblock content %}
